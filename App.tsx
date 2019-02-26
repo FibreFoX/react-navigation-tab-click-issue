@@ -10,6 +10,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import { createAppContainer, createMaterialTopTabNavigator } from 'react-navigation';
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -18,8 +19,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-interface Props {}
-export default class App extends Component<Props> {
+class DefaultContent extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -27,6 +27,26 @@ export default class App extends Component<Props> {
         <Text style={styles.instructions}>To get started, edit App.tsx</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
+    );
+  }
+}
+
+const AppNavigationContainer = createAppContainer(
+	createMaterialTopTabNavigator({
+		TabOne: {
+			screen: DefaultContent
+		},
+		TabTwo: {
+			screen: DefaultContent
+		}
+	})
+);
+
+interface Props {}
+export default class App extends Component<Props> {
+  render() {
+    return (
+      <AppNavigationContainer />
     );
   }
 }
