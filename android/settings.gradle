@@ -1,0 +1,3 @@
+rootProject.name = 'reactnavigationtabissue'
+
+include ':app'
